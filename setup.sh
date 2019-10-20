@@ -12,5 +12,4 @@ sed -i 's/DB_DATABASE=homestead/DB_DATABASE=fenix/g' .env
 sed -i 's/DB_USERNAME=homestead/DB_USERNAME=fenix/g' .env
 sed -i 's/DB_PASSWORD=secret/DB_PASSWORD=123456/g' .env
 
-php artisan make:auth
-php artisan migrate:fresh --seed && echo "Done..."
+php artisan migrate:refresh && echo "Done..."

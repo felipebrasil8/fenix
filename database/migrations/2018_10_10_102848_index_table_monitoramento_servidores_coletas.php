@@ -15,12 +15,12 @@ class IndexTableMonitoramentoServidoresColetas extends Migration
     {
        DB::statement(
             "  
-                CREATE INDEX IF NOT EXISTS monitoramento_servidores_coletas_idx01 ON monitoramento_servidores_coletas (date(created_at));
+                CREATE INDEX monitoramento_servidores_coletas_idx01 ON monitoramento_servidores_coletas (date(created_at));
             "
         );
         DB::statement(
             "  
-                CREATE INDEX IF NOT EXISTS logs_monitoramento_servidores_idx01 ON logs_monitoramento_servidores (date(inicio_coleta));
+                CREATE INDEX logs_monitoramento_servidores_idx01 ON logs_monitoramento_servidores (date(inicio_coleta));
             "
         );
     }

@@ -55,10 +55,10 @@ class CreatePublicacaoBuscaTableSprint033 extends Migration
         });
    
         DB::statement("
-            CREATE INDEX IF NOT EXISTS publicacoes_busca_documento_idx01 ON publicacoes_busca USING gist(documento);
+            CREATE INDEX publicacoes_busca_documento_idx01 ON publicacoes_busca USING gist(documento);
         ");
          DB::statement("
-            CREATE INDEX IF NOT EXISTS publicacoes_visualizacoes_idx01 ON publicacoes_visualizacoes (publicacao_id,usuario_inclusao_id);
+            CREATE INDEX publicacoes_visualizacoes_idx01 ON publicacoes_visualizacoes (publicacao_id,usuario_inclusao_id);
         ");
 
     
