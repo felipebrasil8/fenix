@@ -11,7 +11,7 @@
     "dependencias": "npm i vue-perfect-scrollbar vue-js-modal vue2-editor cookie-in-vue vue-bootstrap-datetimepicker vuedraggable vue-slick --save"
   },
   "devDependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.18.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
@@ -30,7 +30,7 @@
     "angular-chart.js": "^1.1.1",
     "angular-drag-and-drop-lists": "^2.1.0",
     "angular-web-notification": "^1.2.24",
-    "axios": "^0.15.3",
+    "axios": "^0.18.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-polyfill": "^6.26.0",
     "cookie-in-vue": "^0.1.8",
