@@ -1,0 +1,18 @@
+<!-- Migalha de pão | .content-header -->
+<section class="content-header">
+	<h1>
+		{{ titulo }}
+		<small>
+			{{ descricao }}
+		</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li class="{{ migalha.class }}" ng-repeat="migalha in migalhas">
+			<a href="{{ migalha.url }}">
+				<i class="fa fa-{{ migalha.icone }}"></i>{{ migalha.nome }}
+			</a>
+		</li>		
+	</ol>
+		
+</section>
+<!-- /.content-header -->

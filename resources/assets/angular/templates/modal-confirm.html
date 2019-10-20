@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-label="Fechar" ng-click="modalCancelarAlterarStatus()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 class="modal-title">{{ mensagem }}</h4>
+</div>
+<div class="modal-body" ng-show="errors">	
+	<div class="row">
+	    <div class="col-md-12">
+			<div class="callout no-margin-bottom callout-danger" style="margin-top: 15px;">
+			    <div>{{ errors }}</div>        
+			</div>
+		</div>
+	</div>
+</div>      
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" ng-click="modalCancelarAlterarStatus()" style="margin-right: 10px;">NÃO</button>
+  <button type="button" class="btn btn-primary" ng-click="alterarStatus()" autofocus>SIM</button>
+</div>

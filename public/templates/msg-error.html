@@ -1,0 +1,8 @@
+ <!-- second row -->
+<div class="row">
+    <div class="col-md-12">
+		<div class="callout no-margin-bottom callout-danger" ng-repeat="(key, value) in errors['errors']" style="margin-top: 15px;">
+		    <div>{{ value | filterJSON | filterDataNascimento }}</div>        
+		</div>
+	</div>
+</div>

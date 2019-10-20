@@ -1,0 +1,46 @@
+FROM centos
+
+COPY . /var/www/fenix
+
+RUN yum install vim dos2unix unzip zip tcpdump traceroute nmap iptraf rsync git -y \
+	&& rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
+	&& rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm \
+	&& yum install php70w php70w-mbstring php-php-gettext php70w-pgsql -y \
+	&& rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY* \
+	&& curl --silent --location https://rpm.nodesource.com/setup_10.x \
+	&& yum install -y nodejs \
+	&& yum install -y gcc-c++ make \ 
+	&& curl -sL https://dl.yarnpkg.com/rpm/yarn.repo \
+	&& yum install -y yarn \
+	&& yum -y install httpd \
+	&& systemctl start httpd.service \
+	&& systemctl enable httpd.service \
+	&& rpm -Uvh https://yum.postgresql.org/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm \
+	&& yum -y install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm \
+	&& yum -y install postgresql96-server postgresql96 \
+	&& /usr/pgsql-9.6/bin/postgresql96-setup initdb \
+	&& mv /usr/lib/systemd/system/postgresql-9.6.service /usr/lib/systemd/system/postgresql.service \
+	&& systemctl enable postgresql \
+	&& systemctl start postgresql \
+	&& postgres -c "psql -c \"ALTER ROLE postgres PASSWORD '123456'\" -d postgres" \
+	&& postgres -c "psql -c \"CREATE ROLE fenix PASSWORD '123456' LOGIN CREATEDB\" -d postgres" \
+	&& postgres -c "psql -c \"CREATE DATABASE fenix; \" -d postgres" \
+	&& echo bd@no#p% | passwd --stdin postgres \
+	&& systemctl restart postgresql \
+	&& cd /var/www/fenix \
+	&& yum install composer \
+	&& composer global require "laravel/installer=~1.1" \
+	&& export PATH="~/.config/composer/vendor/bin:$PATH" \
+	&& composer install \
+	&& php artisan key:generate \
+	&& sed -i 's/DB_CONNECTION=mysql/DB_CONNECTION=pgsql/g' .env \
+	&& sed -i 's/DB_PORT=3306/DB_PORT=5432/g' .env \
+	&& sed -i 's/DB_DATABASE=homestead/DB_DATABASE=fenix/g' .env \
+	&& sed -i 's/DB_USERNAME=homestead/DB_USERNAME=fenix/g' .env \
+	&& sed -i 's/DB_PASSWORD=secret/DB_PASSWORD=123456/g' .env \
+	&& php artisan make:migrate \
+	&& php artisan make:auth 
+
+WORKDIR /var/www/fenix
+
+EXPOSE 3000

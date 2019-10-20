@@ -1,0 +1,30 @@
+<!-- Migalha de pão | .content-header -->
+<section class="content-header">
+	<h1>
+		{{ titulo }}
+		<small>
+			<span ng-if="visualizar_todos">
+				<span ng-show="!viewDepartamento" ng-mouseleave="hoverOutDepartamento()" style="display: inline-block;">
+					<select class="form-control input-sm" ng-change="setDepartamentoCookie( departamento )" ng-model="departamento" ng-options="item.nome for item in departamentos track by item.id"></select>
+				</span>
+				<span ng-show="viewDepartamento" ng-mouseover="hoverInDepartamento()">{{departamento.nome}}</span>
+			</span>
+			<span ng-if="!visualizar_todos">
+				<span>{{departamento.nome}}</span>
+			</span>
+			 - 
+			<span ng-show="!viewData" ng-mouseleave="hoverOutData()" style="display: inline-block;">
+					<select class="form-control input-sm" ng-change="setDataCookie( data )" ng-model="data" ng-options="item.nome for item in datas track by item.value"></select>
+				</span>
+			<span ng-show="viewData" ng-mouseover="hoverInData()">{{data.nome}}</span>
+		</small>
+	</h1>
+	<ol class="breadcrumb">
+		<li class="{{ migalha.class }}" ng-repeat="migalha in migalhas">
+			<a href="{{ migalha.url }}">
+				<i class="fa fa-{{ migalha.icone }}"></i>{{ migalha.nome }}
+			</a>
+		</li>		
+	</ol>
+</section>
+<!-- /.content-header -->
