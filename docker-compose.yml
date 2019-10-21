@@ -27,8 +27,9 @@ services:
       context: .
     image: node
     container_name: node_fenix
+    command: ["npm", "run", "watch"]
     volumes:
-      - ./:/var/www
+      - .:/var/www
     ports:
       - "3000:3000"
     networks: 
