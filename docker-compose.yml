@@ -1,25 +1,25 @@
 version: '3'
 services:
 
-  #PHP Service
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   image: digitalocean.com/php
-  #   container_name: app
-  #   restart: unless-stopped
-  #   tty: true
-  #   environment:
-  #     SERVICE_NAME: app
-  #     SERVICE_TAGS: dev
-  #   working_dir: /var/www/fenix
-  #   depends_on:
-  #     - db
-  #   volumes:
-  #     - ./:/var/www/fenix
-  #   networks:
-  #     - app-network
+  PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: digitalocean.com/php
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www/fenix
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/fenix
+    networks:
+      - app-network
 
   node1:
     build:
@@ -34,23 +34,23 @@ services:
       - "3000:3000"
     networks: 
       - app-network
-    # depends_on:
-    #   - db
-    #   - app
+    depends_on:
+      - db
+      - app
 
-  # db:
-  #   image: postgres:9.4
-  #   container_name: db
-  #   restart: unless-stopped
-  #   tty: true
-  #   ports:
-  #     - "5432:5432"
-  #   environment:
-  #     POSTGRES_USER: fenix
-  #     POSTGRES_DB: fenix
-  #     POSTGRES_PASSWORD: "123456"
-  #   networks:
-  #     - app-network
+  db:
+    image: postgres:9.4
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: fenix
+      POSTGRES_DB: fenix
+      POSTGRES_PASSWORD: "123456"
+    networks:
+      - app-network
 
 #Docker Networks
 networks:

@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+    fenix:
+        build:
+            dockerfile: ./Dockerfile
+            context: .
+        image: fenix
+        container_name: fenix
+        ports:
+            - "3000:3000"
+        networks: 
+            - laravel
+
+networks: 
+    laravel:
+        driver: bridge

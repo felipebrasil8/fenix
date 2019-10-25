@@ -1,7 +1,14 @@
-FROM php:7.2-fpm
+FROM php:7-apache
 
 # Copy composer.lock and composer.json
 COPY . /var/www/fenix
+ 
+COPY .docker/laravel.conf /etc/apache2/sites-available/laravel.conf
+ 
+RUN a2ensite laravel.conf \ 
+    a2dissite 000-default.conf \ 
+    service apache2 restart \
+    chown -R www-data:www-data /var/www/fenix
 
 # Set working directory
 WORKDIR /var/www/fenix
@@ -51,4 +58,3 @@ USER www
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
-CMD ["php-fpm"]
