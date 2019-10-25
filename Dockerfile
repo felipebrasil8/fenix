@@ -3,13 +3,8 @@ FROM php:7-apache
 # Copy composer.lock and composer.json
 COPY . /var/www/fenix
  
-COPY .docker/laravel.conf /etc/apache2/sites-available/laravel.conf
+COPY ./docker/laravel.conf /etc/apache2/sites-available/laravel.conf
  
-RUN a2ensite laravel.conf \ 
-    a2dissite 000-default.conf \ 
-    service apache2 restart \
-    chown -R www-data:www-data /var/www/fenix
-
 # Set working directory
 WORKDIR /var/www/fenix
 
@@ -26,7 +21,11 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
-    curl
+    curl \
+    libzip-dev
+
+# Copy existing application directory permissions
+COPY --chown=www-data:www-data . /var/www/fenix
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -45,16 +44,6 @@ RUN docker-php-ext-install gd pdo
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
-
-# Copy existing application directory permissions
-# COPY --chown=www:www . /var/www/fenix
-
-# Change current user to www
-USER www
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
