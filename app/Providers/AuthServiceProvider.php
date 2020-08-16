@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
   public function boot(GateContract $gate)
   {
     $this->registerPolicies($gate);
-    /*
+    
     $permissoes = Permissao::select('id', 'identificador')->get();
     foreach ($permissoes as $permissao)
     {
@@ -42,7 +42,7 @@ class AuthServiceProvider extends ServiceProvider
        *    Do primeiro parâmetro em diante, o parâmetro é passado na chamada do gate
        * @return bool
        */
-      /*$gate::define($permissao->identificador, function ( $usuario )
+      $gate::define($permissao->identificador, function ( $usuario )
       {
         $permissaoUsuario = new PermissaoUsuario();
         return $permissaoUsuario->permissaoIdentificador( $usuario, $usuario->identificador );
@@ -52,10 +52,10 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Para o @can() do blade.
      */
-    /*$gate::before( function ( $usuario, $identificador )
+    $gate::before( function ( $usuario, $identificador )
     {
       $permissaoUsuario = new PermissaoUsuario();
       return $permissaoUsuario->permissaoIdentificador( $usuario, $identificador );
-    } );*/
+    } );
   }
 }

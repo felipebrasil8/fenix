@@ -234,5 +234,5 @@ mix.autoload({
     'jquery': ['$', 'window.jQuery', 'jQuery']
 });
 
-mix.browserSync(process.env.MIX_SENTRY_DSN_PUBLIC);
+//mix.browserSync(process.env.MIX_SENTRY_DSN_PUBLIC);
 

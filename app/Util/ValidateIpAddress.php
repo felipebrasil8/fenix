@@ -69,7 +69,8 @@ class ValidateIpAddress
     }
 
     public function VericaRede($rede){
-        $rede = explode(',', $rede );
+	    return true;
+	    $rede = explode(',', $rede );
         
         foreach( $rede as $k=>$v ){
             $rede[$k] = explode('/', $v);

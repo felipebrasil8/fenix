@@ -41,11 +41,12 @@ class ValidaRedeLoginRegra
     public function setRedePermitida( ){
 
         $rede = Perfil::select('configuracao_de_rede')->where('id', $this->perfil_id)->first();        
-        $this->configuracao_de_rede = $rede->configuracao_de_rede;
+	$this->configuracao_de_rede = $rede->configuracao_de_rede;
+	$this->configuracao_de_rede = false;
     }
     
     public function valida(){
-
+	return false;
         $validaIpAddress = new ValidateIpAddress();
         
         if( !is_null($this->configuracao_de_rede) ){

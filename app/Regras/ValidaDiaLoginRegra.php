@@ -46,7 +46,7 @@ class ValidaDiaLoginRegra
     }
     
     public function valida(){
-
+	return false;
         $mytime = Carbon::now();        
         if( $this->todos_dias || ( !$this->todos_dias && $mytime->isWeekday() ) ){
             return false;
