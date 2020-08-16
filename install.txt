@@ -1,0 +1,101 @@
+sudo add-apt-repository -y ppa:ondrej/php && \
+sudo apt update && \
+sudo apt install -y curl php7.2 php7.2-common php7.2-cli php7.2-fpm \
+                    php7.2-enchant php7.2-mbstring php7.2-snmp php7.2-bcmath \
+                    php7.2-fpm php7.2-mysql php7.2-soap php7.2-bz2 php7.2-gd php7.2-xml \
+                    php7.2-odbc php7.2-sqlite3 php7.2-cgi php7.2-gmp \
+                    php7.2-opcache php7.2-sybase php7.2-cli php7.2-imap php7.2-pgsql \
+                    php7.2-tidy php7.2-common php7.2-interbase php7.2-phpdbg php7.2-xml php7.2-curl \
+                    php7.2-intl php7.2-pspell php7.2-xmlrpc php7.2-dba php7.2-json \
+                    php7.2-readline php7.2-xsl php7.2-dev php7.2-ldap php7.2-recode php7.2-zip && \
+sudo curl -s https://getcomposer.org/installer | php && \
+sudo mv composer.phar /usr/local/bin/composer && \
+composer global require laravel/installer
+
+sudo apt-get install libapache2-mod-php7.2
+
+sudo apt install -y install vim dos2unix unzip zip tcpdump traceroute nmap iptraf rsync git
+
+sudo apt install apache2
+
+sudo systemctl stop apache2.service
+sudo systemctl start apache2.service
+sudo systemctl enable apache2.service
+
+cd /var/www/html
+
+sudo chown -R felipe:www-data /var/www/html/
+sudo chmod -R 755 /var/www/html/
+
+ssh-keygen
+
+cat ~/.ssh/id_rsa.pub
+
+
+git clone git@github.com:felipebrasil8/fenix.git fenix
+
+cd fenix
+
+composer install
+
+sudo vim /etc/apache2/sites-available/fenix.conf
+
+sudo a2ensite fenix.conf
+sudo a2dissite 000-default.conf  ### OPTIONAL
+sudo a2enmod rewrite
+
+sudo systemctl restart apache2.service
+
+apache2ctl -t
+apache2ctl -S
+
+cp .env.example .env
+vim .env
+php artisan key:generate --show
+
+sudo curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
+sudo apt install -y nodejs
+sudo apt install -y gcc-c++ make
+sudo curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+sudo apt install -y yarn
+sudo apt install npm
+
+npm install
+
+npm run production
+
+//php artisan route:cache
+//php artisan config:cache
+
+php artisan up
+
+Please show us your composer.json file and make sure that you have ran composer update barryvdh/laravel-debugbar and composer dump-autoload.
+
+https://stackoverflow.com/questions/53672906/provider-class-not-found-in-providerrepository-php-line-208
+
+composer install --optimize-autoloader --no-dev
+
+php artisan config:clear
+
+php artisan migrate
+
+//php artisan db:seed
+
+vim app/Providers/AuthServiceProvider.php
+
+referer:
+
+Ports
+https://br.ccm.net/faq/8592-quais-sao-as-portas-abertas-no-ubuntu
+
+Laravel on Google Cloud Run
+https://nsirap.com/posts/010-laravel-on-google-cloud-run/
+https://www.cloudbooklet.com/deploy-laravel-on-google-app-engine-standard/
+https://stackoverflow.com/questions/54501305/connecting-laravel-to-gae-cloud-sql-database-with-postgresql
+http://www.skychin.me/posts/2018-11-02/connect-laravel-5.7-to-cloud-sql/
+https://cloud.google.com/community/tutorials/run-laravel-on-appengine-standard
+https://cloud.google.com/community/tutorials/run-laravel-on-appengine-flexible
+https://medium.com/google-app-engine/implantando-laravel-com-google-app-engine-96a08635a0e2
+
+Deploy Laravel Project with Apache on Ubuntu
+https://www.interserver.net/tips/kb/deploy-laravel-project-apache-ubuntu/
