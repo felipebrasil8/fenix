@@ -183,9 +183,7 @@ return [
         App\Providers\FenixRepositoryProvider::class,
         // View Composer - Envia as info, para as view.
         App\Providers\ViewServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
-
+        Maatwebsite\Excel\ExcelServiceProvider::class
     ],
 
     /*
