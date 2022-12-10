@@ -34,7 +34,7 @@
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-polyfill": "^6.26.0",
     "cookie-in-vue": "^0.1.8",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "ioredis": "^3.2.2",
     "socket.io": "^2.0.4",
     "vue-bootstrap-datetimepicker": "^4.1.3",
